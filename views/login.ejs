@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/login.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section class="title">
+        <div class="m-title">
+            <h1 style="color: #78A083;">BLOG <br><span class="h1-span">SPOT</span></h1>
+        </div>
+        <div class="s-title">
+            <h3 style="color: #9DDE8B;">A PLACE FOR <br>BLOGGING</h3>
+        </div>
+    </section>
+    <section class="form-section">
+        <form action="/login" class="form" method="post">
+            <input class="text-area" placeholder="USER NAME" type="text" name="userName" id="user" required> <br>
+            <input class="text-area" placeholder="PASSWORD" type="password" name="password" id="pass" required> <br>
+            <input type="submit" style="font-weight: bolder; font-size: small;" class="submit" value="GO">
+            <button style="font-weight: bolder; font-size: small;" class="signup" value="signup">Sign Up</button>
+        </form>
+        <div id="response-message" style="margin-top: 20px; color: aqua;"><%= message %></div>
+    </section>
+
+    <script>
+        $(document).ready(function() {
+            $('.signup').click(function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                var user = $('#user').val();
+                var pass = $('#pass').val();
+                console.log(user);
+                console.log(pass);
+
+                fetch('/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ data1: user, data2: pass })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+
+                    // Display the response message
+                    $('#response-message').html(`<p>${data.message} for user: ${data.user}</p>`);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    $('#response-message').html('<p style="color: red;">An error occurred. Please try again.</p>');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

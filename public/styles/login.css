@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    min-height: 100svh;
+}
+
+.title {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 20svh;
+    gap: 7rem;
+    align-items: end;
+}
+
+
+h1 {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 8rem;
+    line-height: 5rem;
+    margin-bottom: 0;
+}
+
+.h1-span {
+    font-size: 4rem;
+}
+
+h3 {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.5rem;
+    margin-bottom: 0;
+}
+
+.m-title {
+    text-align: right;
+}
+
+body {
+    background-color: #212121;
+}
+
+.form {
+    text-align: center;
+}
+
+.text-area {
+    background-color: #F0BD16;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    color: #757575;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    margin-bottom: 1rem;
+    padding: 13px;
+    height: .4rem;
+    width: 8rem;
+    border: none;
+    text-align: center;
+    font-size: small;
+    font-weight: 600;
+}
+
+input[type="text"]:focus {
+    outline: none;
+}
+
+.submit {
+    background-color: #F0BD16;
+    border-radius: 50%;
+    height: 2.2rem;
+    width: 2.2rem;
+    border: none;
+    margin-right: 1rem;
+}
+
+.signup {
+    background-color: #F0BD16;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    height: 2.2rem;
+    width: 4.2rem;
+    border: none;
+}
+
+@media (max-width:990px) {
+    .title {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 0;
+        align-items: start;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 6rem;
+        line-height: 2.2rem;
+    }
+
+    .h1-span {
+        font-size: 2.2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+}

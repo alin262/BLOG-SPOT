@@ -1,0 +1,17 @@
+{
+  "name": "blog_spot",
+  "version": "1.0.0",
+  "description": "an app for post your thoughts",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "alin_a_s",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}
