@@ -7,6 +7,26 @@
     <link rel="stylesheet" href="styles/home.css">
 </head>
 <body>
+    <section class="whole-container">
+        <header>
+            <section class="story-container">
+                <% userNamesArray.forEach(element => { %>
+                    <div class="story-tab"><p><%= element  %></p></div>
+
+              <%    }); %>
+            </section>
+            <section class="profile-container">
+                <div class="profile-tab">
+                    <%= user %>
+                </div>
+            </section>
+        </header>
+
+        <section class="tweet-container">
+            <div></div>
+        </section>
+
+    </section>
     
 </body>
 </html>
