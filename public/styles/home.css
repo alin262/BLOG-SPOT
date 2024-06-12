@@ -22,7 +22,7 @@ h4{
     letter-spacing: .3px;
     font-style: normal;
 }
-p{
+h5{
     font-family: "Rubik", sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
@@ -32,6 +32,23 @@ p{
 
 body{
     background-color:#212121;
+  
+    
+}
+.create-icon{
+    background-color: #E4CCFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6.5rem;
+    width: 6.5rem;
+    border-radius: 1rem;
+    position: fixed;
+    z-index: 1;
+    margin-top: 80vh;
+    -webkit-box-shadow: 0px -1px 21px 8px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px -1px 21px 8px rgba(0,0,0,0.75);
+box-shadow: 0px -1px 21px 8px rgba(0,0,0,0.75);
 }
 /* header section */
 header{

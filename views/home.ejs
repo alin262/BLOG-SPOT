@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles/home.css" />
   </head>
   <body>
+    <div style="display: flex; justify-content: center;">
+    <div class="create-icon"><p style="font-size: 3rem; font-weight: 800;">+</p></div></div>
     <section class="whole-container">
       <header>
         <section class="story-container">
@@ -24,7 +26,7 @@
         <% usersTweetsArray.forEach(item=>{ let key = Object.keys(item)[0]; let
         value = item[key];%>
 
-        <div class="tweet-tab"> <h4> <%= value %> </h4> <p  style="text-align: end;"> ~  <%= key%></p>  </div>
+        <div class="tweet-tab"> <h4> <%= value %> </h4> <h5  style="text-align: end;"> ~  <%= key%></h5>  </div>
         <% }) %>
       </section>
     </section>
