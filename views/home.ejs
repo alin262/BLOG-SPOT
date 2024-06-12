@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="styles/home.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles/home.css" />
+  </head>
+  <body>
     <section class="whole-container">
-        <header>
-            <section class="story-container">
-                <% userNamesArray.forEach(element => { %>
-                    <div class="story-tab"><p><%= element  %></p></div>
+      <header>
+        <section class="story-container">
+          <% userNamesArray.forEach(element => { %>
+          <div class="story-tab"><h2><%= element %></h2></div>
 
-              <%    }); %>
-            </section>
-            <section class="profile-container">
-                <div class="profile-tab">
-                    <%= user %>
-                </div>
-            </section>
-        </header>
-
-        <section class="tweet-container">
-            <div></div>
+          <% }); %>
         </section>
+        <section class="profile-container">
+          <div class="profile-tab" style="text-align: center;"> <h1><%= user %></h1></div>
+        </section>
+      </header>
 
+      <section class="tweet-container">
+        <% usersTweetsArray.forEach(item=>{ let key = Object.keys(item)[0]; let
+        value = item[key];%>
+
+        <div class="tweet-tab"> <h4> <%= value %> </h4> <p  style="text-align: end;"> ~  <%= key%></p>  </div>
+        <% }) %>
+      </section>
     </section>
-    
-</body>
+  </body>
 </html>
