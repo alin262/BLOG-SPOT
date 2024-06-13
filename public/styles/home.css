@@ -5,8 +5,9 @@
 h1,h2{
     font-family: "Rubik", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
+    font-size: large;
 }
 h1{
     font-family: "Kanit", sans-serif;
@@ -45,11 +46,50 @@ body{
     border-radius: 1rem;
     position: fixed;
     z-index: 1;
-    margin-top: 80vh;
+    bottom: 0;
+    margin-bottom: 1rem;
+    /* margin-top: 80vh; */
     -webkit-box-shadow: 0px -1px 21px 8px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px -1px 21px 8px rgba(0,0,0,0.75);
 box-shadow: 0px -1px 21px 8px rgba(0,0,0,0.75);
+transition:all .5s ease;
 }
+textarea{
+    text-align: center;
+    width: 80%;
+    height: auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #E4CCFF;
+    border: none;
+    resize: none;
+    outline: none;
+    scrollbar-width: none;
+}
+textarea::placeholder {
+   
+    text-align: center; /* Center align the placeholder text */
+    color: #746078; /* Optional: Change the color of the placeholder text */
+}
+.tweet-button{
+    background-color: #E4CCFF;
+    border: none;
+    
+}
+.tweet-button h2{text-shadow: 0px 0px 10px rgb(104, 45, 167);
+}
+
+/* create icon fuctionality */
+.create-icon.expand{
+    height: 30vh;
+    width: 50vw;
+    height: 20vh;
+   
+}
+.hidden{
+    display: none;
+}
+
 /* header section */
 header{
     display: flex;
