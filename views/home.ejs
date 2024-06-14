@@ -10,8 +10,9 @@
     <div style="display: flex; justify-content: center">
       <div class="create-icon">
         <p style="font-size: 3rem; font-weight: 800">+</p>
+        <form class="" action="/tweet" method="post">
         <textarea placeholder="Write your thoughts here" class="tweet hidden" name="tweet" id=""></textarea>
-        <button class="tweet-button hidden">POST</button>
+        <input type="submit" value="POST" class="tweet-button hidden"></form>
       </div>
     </div>
     <section class="whole-container">
@@ -60,14 +61,14 @@
       $(".create-icon").click(function (e) {
         
         $(this).addClass("expand");
-        $('.tweet,button').removeClass('hidden')
+        $('.tweet,.tweet-button').removeClass('hidden')
         $('p').addClass('hidden')
       });
       $(document).click(function(e){
         
         if(!(e.target.closest('.create-icon'))){
           $('.create-icon').removeClass("expand");
-        $('.tweet,button').addClass('hidden')
+        $('.tweet,.tweet-button').addClass('hidden')
         $('p').removeClass('hidden')
         }
       })

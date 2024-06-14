@@ -15,7 +15,7 @@ let usersTweetsArray = [];
 /// demo usersCredentials and tweets.
 userCredential.set("alin", "123");
 userCredential.set("e", " ");
-userCredential.set("tuvor nnnnnnnhhhn", "p5d2k");
+userCredential.set("tuvor", "p5d2k");
 userCredential.set("wazil", "q8h3n");
 userCredential.set("lemak", "j2f6t");
 userCredential.set("nator", "m4b9v");
@@ -101,6 +101,19 @@ app.get("/", (req, res) => {
   message = ""; // Clear message after rendering
 });
 
+//post tweet route
+app.post('/tweet',(req,res)=>{
+  let tw=req.body.tweet;
+  if (userTweets.has(user)) {
+    let existingArray = userTweets.get(user);
+    existingArray.push(tw);
+    userTweets.set(user, existingArray);
+  } else {
+    let newArray = [tw];
+    userTweets.set(user, newArray);
+  }
+})
+
 // Signup route
 app.post("/signup", (req, res) => {
   console.log("Received signup request");
@@ -144,6 +157,13 @@ app.get("/home", (req, res) => {
   res.render("home.ejs", { userNamesArray: userNamesArray, user: user,usersTweetsArray:usersTweetsArray });
   
 });
+
+//profile route
+app.get('/myprofile'),(req,res)=>{
+  
+}
+
+
 //individual profile route
 app.post('/profile', (req, res) => {
   let author = req.body.author;
@@ -159,7 +179,6 @@ app.post('/profile', (req, res) => {
   });
   res.send(updatedTweetsHtml);
 });
-
 
 
 

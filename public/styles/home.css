@@ -48,23 +48,30 @@ body{
     z-index: 1;
     bottom: 0;
     margin-bottom: 1rem;
-    /* margin-top: 80vh; */
     -webkit-box-shadow: 0px -1px 21px 8px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px -1px 21px 8px rgba(0,0,0,0.75);
 box-shadow: 0px -1px 21px 8px rgba(0,0,0,0.75);
 transition:all .3s ease;
 }
+form {
+    display: flex;
+    
+}
+
+
 textarea{
     text-align: center;
-    width: 80%;
-    height: auto;
+    width: 400px;
+    height:100px;
     padding: 1rem;
     border-radius: 1rem;
-    background-color: #E4CCFF;
+    background-color: rgba(0, 0, 0, 0);
     border: none;
     resize: none;
     outline: none;
     scrollbar-width: none;
+    min-height: 50px;
+    max-height: 140px;
 }
 textarea::placeholder {
    
@@ -72,7 +79,7 @@ textarea::placeholder {
     color: #746078; /* Optional: Change the color of the placeholder text */
 }
 .tweet-button{
-    background-color: #E4CCFF;
+    background-color: rgba(0, 0, 0, 0);
     border: none;
     color: #746078;
 }
@@ -81,14 +88,15 @@ textarea::placeholder {
 
 /* create icon fuctionality */
 .create-icon.expand{
-    height: 30vh;
-    width: 50vw;
-    height: 20vh;
-   
+    height: 150px;
+    width: 500px;
 }
 .hidden{
     display: none;
+    animation: fadeInForm 0.3s forwards;
 }
+
+
 
 /* header section */
 header{
