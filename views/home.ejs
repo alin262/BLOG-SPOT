@@ -11,14 +11,14 @@
       <div class="create-icon">
         <p style="font-size: 3rem; font-weight: 800">+</p>
         <textarea placeholder="Write your thoughts here" class="tweet hidden" name="tweet" id=""></textarea>
-        <button class="tweet-button hidden"><h2>POST</h2></button>
+        <button class="tweet-button hidden">POST</button>
       </div>
     </div>
     <section class="whole-container">
       <header>
         <section class="story-container">
           <% userNamesArray.forEach(element => { %>
-          <div class="story-tab"><h2><%= element %></h2></div>
+          <div class="story-tab author" id="<%= element %>" ><h2><%= element %></h2></div>
 
           <% }); %>
         </section>
@@ -33,7 +33,7 @@
         <% usersTweetsArray.forEach(item=>{ let key = Object.keys(item)[0]; let
         value = item[key];%>
 
-        <div class="tweet-tab">
+        <div class="tweet-tab author" id="<%=key%>" >
           <h4 style="margin-top: 3rem"><%= value %></h4>
           <h5 style="text-align: end">~ <%= key%></h5>
         </div>
@@ -41,12 +41,22 @@
       </section>
     </section>
 
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
-      integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+      //function for show individual profile tab
+      $('.author').click(function(e){
+    let author = this.id;
+    $.ajax({
+        type: 'POST',
+        url: '/profile',
+        data: { author: author },
+        success: function(data) {
+          $('.tweet-container').html(data);
+        }
+      });
+   
+});
+      // functionality for create icon
       $(".create-icon").click(function (e) {
         
         $(this).addClass("expand");

@@ -52,7 +52,7 @@ body{
     -webkit-box-shadow: 0px -1px 21px 8px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px -1px 21px 8px rgba(0,0,0,0.75);
 box-shadow: 0px -1px 21px 8px rgba(0,0,0,0.75);
-transition:all .5s ease;
+transition:all .3s ease;
 }
 textarea{
     text-align: center;
@@ -74,7 +74,7 @@ textarea::placeholder {
 .tweet-button{
     background-color: #E4CCFF;
     border: none;
-    
+    color: #746078;
 }
 .tweet-button h2{text-shadow: 0px 0px 10px rgb(104, 45, 167);
 }

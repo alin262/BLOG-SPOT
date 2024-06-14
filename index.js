@@ -14,7 +14,7 @@ let usersTweetsArray = [];
 
 /// demo usersCredentials and tweets.
 userCredential.set("alin", "123");
-userCredential.set("edison antony", " ");
+userCredential.set("e", " ");
 userCredential.set("tuvor nnnnnnnhhhn", "p5d2k");
 userCredential.set("wazil", "q8h3n");
 userCredential.set("lemak", "j2f6t");
@@ -144,6 +144,24 @@ app.get("/home", (req, res) => {
   res.render("home.ejs", { userNamesArray: userNamesArray, user: user,usersTweetsArray:usersTweetsArray });
   
 });
+//individual profile route
+app.post('/profile', (req, res) => {
+  let author = req.body.author;
+  let tweets = individualTweets(author);
+  let updatedTweetsHtml = '';
+  tweets.forEach(tweet => {
+    updatedTweetsHtml += `
+      <div class="tweet-tab author" id="${author}">
+        <h4 style="margin-top: 3rem">${tweet}</h4>
+        <h5 style="text-align: end">~ ${author}</h5>
+      </div>
+    `;
+  });
+  res.send(updatedTweetsHtml);
+});
+
+
+
 
 app.listen(port, () => {
   console.log(`Successfully initiated port ${port}`);
@@ -168,5 +186,11 @@ function globalTweets() {
       usersTweetsArray.push({ [key]: value });
     }
   });
+}
+
+//function for individual tweets
+function individualTweets(author){
+let t=userTweets.get(author);
+return t;
 }
 
