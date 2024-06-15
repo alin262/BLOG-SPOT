@@ -1,21 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/styles/myprofile.css">
-</head>
-<body>
-    <header>
-        <div class="username" style="text-align: center;" ><h1 style="margin: auto; color: #E4CCFF;"><%= user %></h1></div>
-        <div class="home"><a style="text-decoration: none; color: aqua; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" href="/home">HOME</a></div>
-    </header>
+    <link rel="stylesheet" href="/styles/myprofile.css" />
+  </head>
+  <body>
+    <div class="popup hidden">
+      <div class="popup-tab" style="text-align: center">
+        <h2>ARE YOU SURE YOU ABOUT DELETE</h2>
+        <div class="yes-or-no">
+          <button class="yes">yes</button><button class="no">no</button>
+        </div>
+      </div>
+    </div>
 
-    <section>
-        
+    <section class="body">
+      <header>
+        <div class="username" style="text-align: center">
+          <h1 style="margin: auto; color: #e4ccff"><%= user %></h1>
+        </div>
+        <div class="home">
+          <a
+            style="
+              text-decoration: none;
+              color: aqua;
+              font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+                sans-serif;
+            "
+            href="/home"
+            >HOME</a
+          >
+        </div>
+      </header>
+
+      <section>
+        <div class="tweet-container">
+          <% tw.forEach(element => {%>
+          <div class="tweet-tab">
+            <h3><%= element %></h3>
+            <div style="text-align: right">
+              <p
+                id="<%= element %>"
+                class="dlt-icon"
+                style="display: inline-flex; margin: 0"
+              >
+                🗑
+              </p>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+      </section>
     </section>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let deleteText;
+
+      //popup functionality onclick
+      $(".dlt-icon").click(function (e) {
+        deleteText = this.id;
+        $(".popup").removeClass("hidden");
+      });
+      $(".no").click(() => {
+        $(".popup").addClass("hidden");
+      });
 
 
-</body>
+      $(".yes").click(() => {
+        fetch('/delete', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ deleteText: deleteText }) // Send the resource ID in the request body
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Failed to delete resource');
+        }
+    })
+    .then(data => {
+        console.log('Resource deleted successfully:', data);
+        console.log('Resource deleted successfully');
+        window.location = "/myprofile";
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        console.log('Failed to delete resource');
+    });
+      });
+    </script>
+  </body>
 </html>

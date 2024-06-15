@@ -6,7 +6,7 @@ const port = 3000;
 const userCredential = new Map();
 const userTweets = new Map();
 //for current user
-let user='Edison';
+let user = "Edison";
 let message = "";
 //for global users and tweets
 let userNamesArray = [];
@@ -80,15 +80,15 @@ userTweets.set("motel", [
 ]);
 
 userTweets.set("cinor", [
-"Chasing dreams and catching them one by one.",
-"Creating a life that feels like a dream come true.",
-"Life is tough, but so are you.",
+  "Chasing dreams and catching them one by one.",
+  "Creating a life that feels like a dream come true.",
+  "Life is tough, but so are you.",
 ]);
 
 userTweets.set("duval", [
-"Diving into new adventures with an open heart.",
-"Determined to make every moment count, no regrets.",
-"Believe you can and you're halfway there.",
+  "Diving into new adventures with an open heart.",
+  "Determined to make every moment count, no regrets.",
+  "Believe you can and you're halfway there.",
 ]);
 
 app.use(express.static("public"));
@@ -101,29 +101,27 @@ app.get("/", (req, res) => {
   message = ""; // Clear message after rendering
 });
 
-
-
+//for delete tweets
+app.delete("/delete", (req, res) => {
+  let dT = req.body.deleteText;
+  deleteTweet(user, dT);
+  res.json({ message: "Resource deleted successfully" });
+});
 
 //myprofile route
-app.get('/myprofile',(req,res)=>{
+app.get("/myprofile", (req, res) => {
   if (userCredential.has(user)) {
-    let tw=individualTweets(user)
-    console.log(tw)
-res.render('myprofile.ejs',{user:user,tw:tw})}
-
-else{
-  res.redirect('/')
-}
-  
-})
-
-
-
+    let tw = individualTweets(user);
+    res.render("myprofile.ejs", { user: user, tw: tw });
+  } else {
+    res.redirect("/");
+  }
+});
 
 //post tweet route
-app.post('/tweet',(req,res)=>{
-  let tw=req.body.tweet;
-  console.log(tw)
+app.post("/tweet", (req, res) => {
+  let tw = req.body.tweet;
+  console.log(tw);
   if (userTweets.has(user)) {
     let existingArray = userTweets.get(user);
     existingArray.push(tw);
@@ -132,7 +130,7 @@ app.post('/tweet',(req,res)=>{
     let newArray = [tw];
     userTweets.set(user, newArray);
   }
-})
+});
 
 // Signup route
 app.post("/signup", (req, res) => {
@@ -171,27 +169,26 @@ app.post("/login", (req, res) => {
 
 // Home route
 app.get("/home", (req, res) => {
-  if(userCredential.has(user)){users();
-  globalTweets()
-  console.log(user + " logged");
-  res.render("home.ejs", { userNamesArray: userNamesArray, user: user,usersTweetsArray:usersTweetsArray });
+  if (userCredential.has(user)) {
+    users();
+    globalTweets();
+    console.log(user + " logged");
+    res.render("home.ejs", {
+      userNamesArray: userNamesArray,
+      user: user,
+      usersTweetsArray: usersTweetsArray,
+    });
+  } else {
+    res.redirect("/");
   }
-  else{
-    res.redirect('/')
-  }
-
-  
 });
 
-
-
-
 //individual profile route
-app.post('/profile', (req, res) => {
+app.post("/profile", (req, res) => {
   let author = req.body.author;
   let tweets = individualTweets(author);
-  let updatedTweetsHtml = '';
-  tweets.forEach(tweet => {
+  let updatedTweetsHtml = "";
+  tweets.forEach((tweet) => {
     updatedTweetsHtml += `
       <div class="tweet-tab author" id="${author}">
         <h4 style="margin-top: 3rem">${tweet}</h4>
@@ -201,8 +198,6 @@ app.post('/profile', (req, res) => {
   });
   res.send(updatedTweetsHtml);
 });
-
-
 
 app.listen(port, () => {
   console.log(`Successfully initiated port ${port}`);
@@ -230,8 +225,25 @@ function globalTweets() {
 }
 
 //function for individual tweets
-function individualTweets(author){
-let t=userTweets.get(author);
-return t;
+function individualTweets(author) {
+  let t = userTweets.get(author);
+  return t;
 }
 
+//function to delete tweets
+function deleteTweet(username, tweetToDelete) {
+  if (userTweets.has(username)) {
+    const tweets = userTweets.get(username);
+    const index = tweets.indexOf(tweetToDelete);
+    console.log(index);
+    if (index !== -1) {
+      tweets.splice(index, 1);
+      userTweets.set(username, tweets);
+      console.log(`Deleted tweet: "${tweetToDelete}"`);
+    } else {
+      console.log(`Tweet not found: "${tweetToDelete}"`);
+    }
+  } else {
+    console.log(`User not found: "${username}"`);
+  }
+}

@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+AU+VIC:wght@100..400&display=swap');
 
 body {
+   margin: 0;
+    background-color: #212121;
+}
+.body{
     display: flex;
     flex-direction: column;
-    background-color: #212121;
 }
 
 header {
@@ -18,4 +21,39 @@ h1{
     font-weight: 500;
     font-style: normal;
     font-size: 3rem;
+}
+.tweet-tab{
+    background-color: #E4CCFF;   
+    text-align: center;
+    background-color: #DDDBFF;
+    border-radius: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+
+.popup{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.hidden{
+    display: none;
+}
+
+.popup-tab{
+    background-color: rgba(0,0,0,0,.8);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center; backdrop-filter: blur(10px);
+    width: 50rem;
+    height: 15rem;
+    border-radius: 2rem;
+    color: red;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
