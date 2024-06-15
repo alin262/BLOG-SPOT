@@ -6,7 +6,7 @@ const port = 3000;
 const userCredential = new Map();
 const userTweets = new Map();
 //for current user
-let user='';
+let user='Edison';
 let message = "";
 //for global users and tweets
 let userNamesArray = [];
@@ -14,7 +14,7 @@ let usersTweetsArray = [];
 
 /// demo usersCredentials and tweets.
 userCredential.set("alin", "123");
-userCredential.set("e", " ");
+userCredential.set("Edison", " ");
 userCredential.set("tuvor", "p5d2k");
 userCredential.set("wazil", "q8h3n");
 userCredential.set("lemak", "j2f6t");
@@ -32,7 +32,7 @@ userTweets.set("alin", [
   "Making memories that last a lifetime.",
 ]);
 
-userTweets.set("e", [
+userTweets.set("Edison", [
   "Enjoying the silence, away from the chaos.",
   "Embracing the simplicity of life, one moment at a time.",
 ]);
@@ -80,15 +80,15 @@ userTweets.set("motel", [
 ]);
 
 userTweets.set("cinor", [
-  "Chasing dreams and catching them one by one.",
-  "Creating a life that feels like a dream come true.",
-  "Life is tough, but so are you.",
+"Chasing dreams and catching them one by one.",
+"Creating a life that feels like a dream come true.",
+"Life is tough, but so are you.",
 ]);
 
 userTweets.set("duval", [
-  "Diving into new adventures with an open heart.",
-  "Determined to make every moment count, no regrets.",
-  "Believe you can and you're halfway there.",
+"Diving into new adventures with an open heart.",
+"Determined to make every moment count, no regrets.",
+"Believe you can and you're halfway there.",
 ]);
 
 app.use(express.static("public"));
@@ -101,9 +101,29 @@ app.get("/", (req, res) => {
   message = ""; // Clear message after rendering
 });
 
+
+
+
+//myprofile route
+app.get('/myprofile',(req,res)=>{
+  if (userCredential.has(user)) {
+    let tw=individualTweets(user)
+    console.log(tw)
+res.render('myprofile.ejs',{user:user,tw:tw})}
+
+else{
+  res.redirect('/')
+}
+  
+})
+
+
+
+
 //post tweet route
 app.post('/tweet',(req,res)=>{
   let tw=req.body.tweet;
+  console.log(tw)
   if (userTweets.has(user)) {
     let existingArray = userTweets.get(user);
     existingArray.push(tw);
@@ -151,17 +171,19 @@ app.post("/login", (req, res) => {
 
 // Home route
 app.get("/home", (req, res) => {
-  users();
+  if(userCredential.has(user)){users();
   globalTweets()
   console.log(user + " logged");
   res.render("home.ejs", { userNamesArray: userNamesArray, user: user,usersTweetsArray:usersTweetsArray });
+  }
+  else{
+    res.redirect('/')
+  }
+
   
 });
 
-//profile route
-app.get('/myprofile'),(req,res)=>{
-  
-}
+
 
 
 //individual profile route
