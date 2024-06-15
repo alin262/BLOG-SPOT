@@ -6,7 +6,7 @@ const port = 3000;
 const userCredential = new Map();
 const userTweets = new Map();
 //for current user
-let user = "Edison";
+let user 
 let message = "";
 //for global users and tweets
 let userNamesArray = [];
