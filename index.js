@@ -11,7 +11,7 @@ let message = "";
 //for global users and tweets
 let userNamesArray = [];
 let usersTweetsArray = [];
-
+//
 /// demo usersCredentials and tweets.
 userCredential.set("alin", "123");
 userCredential.set("Edison", " ");
