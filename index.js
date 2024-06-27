@@ -130,6 +130,7 @@ app.post("/tweet", (req, res) => {
     let newArray = [tw];
     userTweets.set(user, newArray);
   }
+  res.redirect("/myprofile")
 });
 
 // Signup route
